@@ -1,58 +1,74 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="container">
+    <p class="quote">{{ selectedQuote.quote }}</p>
+    <p class="author">– {{ selectedQuote.author }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  name: 'Quote',
+  data() {
+    return {
+      number: null,
+      quotes: [
+        {quote: '„Mne nejde o to, za cenu nečinnosti kúpiť si život. Ja nechcem žiť o dvadsať-tridsať rokov. Teraz-teraz chcem žiť.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Nepoctivý človek nemôže vykonať veľký čin.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Nech každý z nás je dnes lepší, ako bol včera a vlasť naša bude veľká a slávna.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Zvíťazíme, ak budeme my Česi a Slováci, vždycky po boku. Keď sa podarí niekomu nás rozdvojiť, potom bude s nami zle. V jednote je sila. Prvou zásadou nášho boja je jednota a svornosť. To si, bratia, pamätajme.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Som Slovák telom i dušou – neznám lásky polovičatej.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Kto si myslí, že mu slobodu druhí vybojujú, ten jej nie je hodný.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Veriť, milovať, pracovať.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Pravde veriť, pravdu žiť a pravdu brániť.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Pre ľudí, pevného predsavzatia a vytrvalosti niet nemožností.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Konám horlivo svoju povinnosť na fronte, aby som robil česť slovenskému národu a dokázal úprimnú lásku k Francúzsku.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Žil som krásny život. Prežíval som večnosť v sekundách.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Vytrvalosť spojená s nadšením je zbraňou, s ktorou človečenstvo postupuje víťazne na ceste pokroku.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Nič mi nebolo nemožné, lebo som chcel.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Musíme žiť jeden pre druhého, lebo šťastie jednotlivcov mohutnie tou mierou, ktorou sa množí vôkol neho.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Chcel by som účinkovať v svojom národe, ktorý som nikdy neprestal milovať.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Búrlivý je život môj a bude plný zápasov. So šťastím by som sa delil, ak však padnem, chcem padnúť sám.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Ocitol som sa v živote. Videl som tie obrovské vlny, tie nemilosrdné vlny, i bolo mi jasno, že vzdor všetkej sebadôvere, vzdor nádeje a povzbudzovania priateľov, vzdor nadšenia môjho a relatívneho šťastia, výhľady do budúcnosti sú veľmi nejasné. Zbývala mi …. a poctivá práca. I pustil som sa pokojným srdcom v boj. Pokojným, lebo ďalším vývinom uvedomil som si, že účelnosť života nie je v sláve svetskej, ale v zdokonaľovaní nášho duševného človeka. V liste Dr. Jurajovi Janoškovi, 1906, Mont Blanc“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Život na mňa musí čakať, a nie živorenie.“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Účelne a logicky žije len ten, kto využíva každý okamih na prehĺbenie intelektu. Čím bystrejší je náš um, čím väčšie je množstvo v nás spracovaných vedomostí, tým hlbšia je súdnosť človeka, tým jasnejší a vrúcnejší jeho pomer k vonkajšiemu svetu. V liste Vavrovi Šrobárovi, 9. september 1909“', author: 'Milan Rastislav Štefánik'},
+        {quote: '„Budúcnosť moja je buď skvelá, buď nijaká.“', author: 'Milan Rastislav Štefánik'},
+      ]};
+  },
+  computed: {
+    selectedQuote(){
+      return(this.quotes[this.$route.params.slug]);
+    },
+  },
+  created() {
+    if(this.$route.params.slug == null) {
+      this.$router.push(`/${this.getRandomQuoteNumber(this.quotes.length)}`);
+    }
+  },
+  methods: {
+    getRandomQuoteNumber(max) {
+      return Math.floor(Math.random() * Math.floor(max));
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+  text-align: center;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.quote {
+  font-weight: 500;
+  font-size: 20px;
+
+  margin-bottom: 10px;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.author {
+  font-weight: 400;
+  font-size: 16px;
 }
 </style>

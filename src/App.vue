@@ -1,24 +1,28 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Quote :quotes="quotes"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Quote from './components/Quote.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    Quote
+  },
 }
 </script>
 
 <style>
+
+  @import url('https://fonts.googleapis.com/css?family=Merriweather');
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Merriweather', serif;
+  line-height: 1.6;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
