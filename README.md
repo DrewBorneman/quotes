@@ -1,5 +1,9 @@
 # quotes
 
+Simple webpage that displays a random quote from a predefined list.  Quotes can be permanantly linked to via slug and the included 'copy to clipboard' link.
+
+[Demo](https://quotes-phi.vercel.app/)
+
 ## Project setup
 ```
 npm install

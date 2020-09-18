@@ -30,7 +30,7 @@ export default {
 
   position: fixed;
   width: 100%;
-  top: 45%;
+  top: 30%;
 
 }
 </style>

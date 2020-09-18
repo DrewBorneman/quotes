@@ -1,10 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
-import Component from 'vue-class-component'
-
-Component.registerHooks([
-  'beforeRouteLeave'
-]);
+import VueClipboard from 'vue-clipboard2'
 
 import App from './App.vue'
 import Quote from "./components/Quote";
@@ -23,6 +19,7 @@ const router = new VueRouter({
 });
 
 Vue.use(VueRouter);
+Vue.use(VueClipboard);
 
 new Vue({
   render: h => h(App),

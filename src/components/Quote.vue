@@ -1,7 +1,8 @@
 <template>
   <div class="container">
-    <p class="quote">{{ selectedQuote.quote }}</p>
-    <p class="author">– {{ selectedQuote.author }}</p>
+    <p class="quote">{{ quotes[quoteNumber].quote }}</p>
+    <p class="author">– {{ quotes[quoteNumber].author }}</p>
+    <a class="copy-link" @click="copyLinkToClipboard" href="javascript:void(0);">copy link</a>
   </div>
 </template>
 
@@ -10,7 +11,7 @@ export default {
   name: 'Quote',
   data() {
     return {
-      prevSlug: null,
+      quoteNumber: null,
       quotes: [
         {quote: '„Mne nejde o to, za cenu nečinnosti kúpiť si život. Ja nechcem žiť o dvadsať-tridsať rokov. Teraz-teraz chcem žiť.“', author: 'Milan Rastislav Štefánik'},
         {quote: '„Nepoctivý človek nemôže vykonať veľký čin.“', author: 'Milan Rastislav Štefánik'},
@@ -41,23 +42,20 @@ export default {
   },
   created() {
     if(this.$route.params.slug == null) {
-      this.$router.push(`/${this.getRandomQuoteNumber(this.quotes.length)}`);
+      this.quoteNumber = this.getRandomQuoteNumber(this.quotes.length);
     }
-  },
-  beforeRouteLeave(to, from, next) {
-    console.log('called');
-    console.log('current slug: ', this.$route.params.slug);
-    console.log('next slug: ', to.params.slug);
-    console.log('quotes length: ', this.quotes.length);
-
-    if (to.params.slug === from.params.slug) {
-      to.params.slug = this.getRandomQuoteNumber(this.quotes.length);
+    else {
+      this.quoteNumber = this.$route.params.slug;
     }
-    next();
+    console.log(this.$route);
   },
   methods: {
     getRandomQuoteNumber(max) {
       return Math.floor(Math.random() * Math.floor(max));
+    },
+    copyLinkToClipboard() {
+      const url = window.location.href + this.quoteNumber;
+      this.$copyText(url);
     }
   }
 }
@@ -81,6 +79,12 @@ export default {
 .author {
   font-weight: 400;
   font-size: 16px;
+  margin-bottom: 50px;
+}
+
+.copy-link {
+  font-weight: 400;
+  font-size: 13px;
 }
 
 @media only screen and (max-width: 768px) {
