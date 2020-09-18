@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Quote :quotes="quotes"/>
+    <Quote />
   </div>
 </template>
 
@@ -27,6 +27,10 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+
+  position: fixed;
+  width: 100%;
+  top: 45%;
+
 }
 </style>

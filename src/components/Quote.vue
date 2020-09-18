@@ -10,7 +10,7 @@ export default {
   name: 'Quote',
   data() {
     return {
-      number: null,
+      prevSlug: null,
       quotes: [
         {quote: '„Mne nejde o to, za cenu nečinnosti kúpiť si život. Ja nechcem žiť o dvadsať-tridsať rokov. Teraz-teraz chcem žiť.“', author: 'Milan Rastislav Štefánik'},
         {quote: '„Nepoctivý človek nemôže vykonať veľký čin.“', author: 'Milan Rastislav Štefánik'},
@@ -44,6 +44,17 @@ export default {
       this.$router.push(`/${this.getRandomQuoteNumber(this.quotes.length)}`);
     }
   },
+  beforeRouteLeave(to, from, next) {
+    console.log('called');
+    console.log('current slug: ', this.$route.params.slug);
+    console.log('next slug: ', to.params.slug);
+    console.log('quotes length: ', this.quotes.length);
+
+    if (to.params.slug === from.params.slug) {
+      to.params.slug = this.getRandomQuoteNumber(this.quotes.length);
+    }
+    next();
+  },
   methods: {
     getRandomQuoteNumber(max) {
       return Math.floor(Math.random() * Math.floor(max));
@@ -54,9 +65,9 @@ export default {
 
 <style scoped>
 .container {
+  width: 40%;
   margin-left: auto;
   margin-right: auto;
-  width: 40%;
   text-align: center;
 }
 
@@ -70,5 +81,19 @@ export default {
 .author {
   font-weight: 400;
   font-size: 16px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    width: 80%;
+  }
+
+  .quote {
+    font-size: 18px;
+  }
+
+  .author {
+    font-size: 14px;
+  }
 }
 </style>

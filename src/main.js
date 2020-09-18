@@ -1,5 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router';
+import Component from 'vue-class-component'
+
+Component.registerHooks([
+  'beforeRouteLeave'
+]);
+
 import App from './App.vue'
 import Quote from "./components/Quote";
 
